@@ -1,0 +1,51 @@
+POST http://localhost:2525/imposters
+
+{
+  "port": 4546,
+  "protocol": "http",
+  "name": "Exercício 2",
+  "stubs": [
+    {
+      "description": "Exercício 2 - GET /api/cars?brand=Toyota",
+      "predicates": [
+        {
+          "and": [
+            { "equals": { "method": "GET" } },
+            { "equals": { "path": "/api/cars" } },
+            {
+              "equals": {
+                "query": { "brand": "Toyota" }
+              }
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "brand": "Toyota",
+              "results": [
+                {
+                  "id": 1,
+                  "modelo": "Corolla",
+                  "preco": 22000
+                },
+                {
+                  "id": 2,
+                  "modelo": "Yaris",
+                  "preco": 18000
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
