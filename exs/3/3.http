@@ -1,0 +1,34 @@
+POST http://localhost:2525/imposters
+
+{
+  "port": 4547,
+  "protocol": "http",
+  "name": "Exercício 3",
+  "stubs": [
+     {
+      "description": "Exercício 3 - GET /api/cars sem parâmetros",
+      "predicates": [
+        {
+          "and": [
+            { "equals": { "method": "GET" } },
+            { "equals": { "path": "/api/cars" } }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "results": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
