@@ -1,0 +1,33 @@
+POST http://localhost:2525/imposters
+
+{
+  "port": 4549,
+  "protocol": "http",
+  "name": "Exercício 5",
+  "stubs": [
+    {
+      "description": "Exercício 5 - POST /api/login genérico",
+      "predicates": [
+        {
+          "and": [
+            { "equals": { "method": "POST" } },
+            { "equals": { "path": "/api/login" } }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 401,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "error": "invalid_credentials"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
