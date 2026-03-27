@@ -11,7 +11,10 @@ POST http://localhost:2525/imposters
         {
           "equals": {
             "method": "POST",
-            "path": "/api/users"
+            "path": "/api/users",
+            "headers": {
+              "Content-Type": "application/json"
+            }
           },
           "contains": { "email": "exists@example.com"}
         }
