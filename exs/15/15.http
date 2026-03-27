@@ -1,0 +1,33 @@
+POST http://localhost:2525/imposters
+Content-Type: application/json
+
+{
+  "port": 4559,
+  "protocol": "http",
+  "stubs": [
+
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "GET"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 404,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "error": "not_found"
+            }
+          }
+        }
+      ]
+    }
+
+  ]
+}
