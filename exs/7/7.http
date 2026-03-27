@@ -6,7 +6,7 @@ POST http://localhost:2525/imposters
   "name": "Exercício 7",
   "stubs": [
     {
-      "description": "Exercício 6 - POST /api/users",
+      "description": "Exercício 7 - POST /api/users",
       "predicates": [
         {
           "equals": {
