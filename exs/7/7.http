@@ -1,0 +1,40 @@
+POST http://localhost:2525/imposters
+
+{
+  "port": 4551,
+  "protocol": "http",
+  "name": "Exercício 7",
+  "stubs": [
+    {
+      "description": "Exercício 6 - POST /api/users",
+      "predicates": [
+        {
+          "equals": {
+            "method": "POST",
+            "path": "/api/users",
+            "headers": {
+              "Content-Type": "application/json"
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 201,
+            "headers": {
+              "Content-Type": "application/json",
+              "Location": "/api/users/10"
+            },
+            "body": {
+              "id":10,
+              "status": "created",
+              "message": "Utilizador criado"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
