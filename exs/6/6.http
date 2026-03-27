@@ -22,7 +22,7 @@ POST http://localhost:2525/imposters
       "responses": [
         {
           "is": {
-            "statusCode": 200,
+            "statusCode": 409,
             "headers": {
               "Content-Type": "application/json"
             },
