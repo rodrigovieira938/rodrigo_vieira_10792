@@ -1,0 +1,5 @@
+POST http://localhost:4558/api/anything
+
+{
+  "data": "test"
+}

@@ -1,0 +1,43 @@
+POST http://localhost:2525/imposters
+Content-Type: application/json
+
+{
+  "port": 4558,
+  "protocol": "http",
+  "stubs": [
+
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "POST"
+          }
+        },
+        {
+          "not": {
+            "equals": {
+              "headers": {
+                "Content-Type": "application/json"
+              }
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 415,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "error": "unsupported_media_type",
+              "message": "Content-Type application/json is required"
+            }
+          }
+        }
+      ]
+    }
+
+  ]
+}
