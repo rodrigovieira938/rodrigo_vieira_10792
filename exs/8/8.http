@@ -1,0 +1,43 @@
+POST http://localhost:2525/imposters
+Content-Type: application/json
+ 
+{
+  "port": 4552,
+  "protocol": "http",
+  "stubs": [
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "POST",
+            "path": "/api/temperature",
+            "headers": {
+              "Content-Type": "application/json"
+            }
+          }
+        },
+        {
+          "not": {
+            "contains": {
+              "body": "value"
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 400,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "error": "missing_field",
+              "message": "Field 'value' is required"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
