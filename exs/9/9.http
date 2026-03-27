@@ -1,0 +1,41 @@
+POST http://localhost:2525/imposters
+Content-Type: application/json
+ 
+{
+  "port": 4553,
+  "protocol": "http",
+  "stubs": [
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "POST",
+            "path": "/api/temperature",
+            "headers": {
+              "Content-Type": "application/json"
+            }
+          }
+        },
+        {
+          "contains": {
+            "body": "value"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 201,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "status": "created",
+              "message": "temperatura guardada com sucesso"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
