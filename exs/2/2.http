@@ -9,15 +9,13 @@ POST http://localhost:2525/imposters
       "description": "Exercício 2 - GET /api/cars?brand=Toyota",
       "predicates": [
         {
-          "and": [
-            { "equals": { "method": "GET" } },
-            { "equals": { "path": "/api/cars" } },
-            {
-              "equals": {
-                "query": { "brand": "Toyota" }
-              }
+          "equals": { 
+            "method": "GET",
+            "path": "/api/cars",
+            "query": {
+              "brand": "Toyota"
             }
-          ]
+          } 
         }
       ],
       "responses": [

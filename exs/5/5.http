@@ -9,10 +9,10 @@ POST http://localhost:2525/imposters
       "description": "Exercício 5 - POST /api/login genérico",
       "predicates": [
         {
-          "and": [
-            { "equals": { "method": "POST" } },
-            { "equals": { "path": "/api/login" } }
-          ]
+          "equals": { 
+            "method": "POST", 
+            "path": "/api/login"
+          }
         }
       ],
       "responses": [

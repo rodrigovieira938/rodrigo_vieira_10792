@@ -9,10 +9,10 @@ POST http://localhost:2525/imposters
       "description": "Exercício 3 - GET /api/cars sem parâmetros",
       "predicates": [
         {
-          "and": [
-            { "equals": { "method": "GET" } },
-            { "equals": { "path": "/api/cars" } }
-          ]
+          "equals": { 
+            "method": "GET",
+            "path": "/api/cars"
+          }
         }
       ],
       "responses": [

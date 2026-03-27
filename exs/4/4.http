@@ -9,18 +9,17 @@ POST http://localhost:2525/imposters
       "description": "Exercício 4 - POST /api/login",
       "predicates": [
         {
-          "and": [
-            { "equals": { "method": "POST" } },
-            { "equals": { "path": "/api/login" } },
-            {
-              "deepEquals": {
-                "body": {
-                  "username": "admin",
-                  "password": "secret"
-                }
-              }
+          "equals": { 
+            "method": "POST",
+            "path": "/api/login",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "username": "admin",
+              "password": "secret"
             }
-          ]
+          }
         }
       ],
       "responses": [

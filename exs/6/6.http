@@ -1,18 +1,19 @@
 POST http://localhost:2525/imposters
 
 {
-  "port": 4545,
+  "port": 4550,
   "protocol": "http",
-  "name": "Exercício 1",
+  "name": "Exercício 6",
   "stubs": [
     {
-      "description": "Exercício 1 - GET /api/marcas",
+      "description": "Exercício 6 - POST /api/users com email específico",
       "predicates": [
         {
           "equals": {
-            "method": "GET", 
-            "path": "/api/marcas"
-          }
+            "method": "POST",
+            "path": "/api/users"
+          },
+          "contains": { "email": "exists@example.com"}
         }
       ],
       "responses": [
@@ -23,7 +24,8 @@ POST http://localhost:2525/imposters
               "Content-Type": "application/json"
             },
             "body": {
-              "marcas": ["Toyota", "Audi", "Ford", "Volvo", "Honda"]
+              "error": "email_exists",
+              "message": "Email já está a ser utilizado"
             }
           }
         }
