@@ -1,0 +1,8 @@
+POST http://localhost:4545/api/alunos
+Content-Type: application/json
+
+{
+    "nome": "Rodrigo Vieira",
+    "idade": 17,
+    "curso": "PI"
+}

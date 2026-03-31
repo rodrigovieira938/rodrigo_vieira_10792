@@ -1,0 +1,314 @@
+POST http://localhost:2525/imposters
+
+{
+  "port": 4545,
+  "protocol": "http",
+  "name": "API Gestão de Alunos",
+  "stubs": [
+    {
+      "description": "GET /api/alunos",
+      "predicates": [
+        {
+          "equals": {
+            "method": "GET", 
+            "path": "/api/alunos"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": [
+                {
+                    "id": 1,
+                    "nome":"Rodrigo Vieira",
+                    "idade": 17,
+                    "curso": "PI"
+                },
+                { 
+                    "id": 2,
+                    "nome":"Afonso Batista",
+                    "idade": 17,
+                    "curso": "PI"
+                },
+                {
+                    "id": 3,
+                    "nome": "Diogo Costa",
+                    "idade": 17,
+                    "curso": "PI"
+                }
+            ]
+          }
+        }
+      ]
+    },
+    {
+        "description": "GET /api/alunos/{id}",
+        "predicates": [
+            {
+                "equals": {
+                    "method": "GET", 
+                    "path": "/api/alunos/1"
+                }
+            }
+        ],
+        "responses": [
+            {
+                "is": {
+                    "status-code": 200,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "id": 1,
+                        "nome":"Rodrigo Vieira",
+                        "idade": 17,
+                        "curso": "PI"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "description": "POST /api/alunos",
+        "predicates": [
+            {
+                "equals": {
+                    "method": "POST", 
+                    "path": "/api/alunos",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    }
+                }
+            },
+            {
+                "contains": {
+                    "body": "nome"
+                }
+            },
+            {
+                "contains": {
+                    "body": "idade"
+                }
+            },
+            {
+                "equals": {
+                    "body": {
+                        "curso": "PI"
+                    }
+                }
+            }
+        ],
+        "responses": [
+            {
+                "is": {
+                    "status-code": 200,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "status": "ok",
+                        "msg": "Utilizador criado com sucesso"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "description": "POST /api/alunos",
+        "predicates": [
+            {
+                "equals": {
+                    "method": "POST", 
+                    "path": "/api/alunos",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    }
+                }
+            },
+            {
+                "not": {
+                    "equals": {
+                        "body": {
+                            "curso":"PI"
+                        }
+                    }
+                }
+            }
+        ],
+        "responses": [
+            {
+                "is": {
+                    "status-code": 404,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "status": "error",
+                        "msg": "Curso não encontrado"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "description": "PUT /api/alunos",
+        "predicates": [
+            {
+                "equals": {
+                    "method": "PUT", 
+                    "path": "/api/alunos/1",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    }
+                }
+            },
+            {
+                "contains": {
+                    "body": "nome"
+                }
+            },
+            {
+                "contains": {
+                    "body": "idade"
+                }
+            },
+            {
+                "equals": {
+                    "body": {
+                        "curso": "PI"
+                    }
+                }
+            }
+        ],
+        "responses": [
+            {
+                "is": {
+                    "status-code": 200,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "status": "ok",
+                        "msg": "Utilizador atualizado com sucesso"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "description": "PUT /api/alunos/1",
+        "predicates": [
+            {
+                "equals": {
+                    "method": "PUT", 
+                    "path": "/api/alunos/1",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    }
+                }
+            },
+            {
+                "contains": {
+                    "body": "nome"
+                }
+            },
+            {
+                "contains": {
+                    "body": "idade"
+                }
+            },
+            {
+                "not": {
+                    "equals": {
+                        "body": {
+                            "curso": "PI"
+                        }
+                    }
+                }
+            }
+        ],
+        "responses": [
+            {
+                "is": {
+                    "status-code": 404,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "status": "error",
+                        "msg": "Curso não encontrado"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "description": "DELETE /api/alunos/1",
+        "predicates": [
+            {
+                "equals": {
+                    "method": "DELETE", 
+                    "path": "/api/alunos/1",
+                    "headers": {
+                        "Authorization": "Bearer admin"
+                    }
+                }
+            }
+        ],
+        "responses": [
+            {
+                "is": {
+                    "status-code": 200,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "status": "ok",
+                        "msg": "Utilizador eliminado com sucesso"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "description": "DELETE /api/alunos/1",
+        "predicates": [
+            {
+                "equals": {
+                    "method": "DELETE", 
+                    "path": "/api/alunos/1"
+                }
+            },
+            {
+                "not": {
+                    "equals": {
+                        "headers": {
+                            "Authorization": "Bearer admin"
+                        }
+                    }
+                }
+            }
+        ],
+        "responses": [
+            {
+                "is": {
+                    "status-code": 401,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "status": "ok",
+                        "msg": "Sem autorização para eliminar utilizador"
+                    }
+                }
+            }
+        ]
+    }
+  ]
+}
+
