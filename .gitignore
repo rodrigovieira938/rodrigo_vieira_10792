@@ -1,2 +1,6 @@
 mb*.log
 mb.pid
+
+exs/ficha3/API/.vs
+exs/ficha3/API/bin
+exs/ficha3/API/obj
