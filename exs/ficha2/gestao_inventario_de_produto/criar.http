@@ -1,0 +1,141 @@
+POST http://localhost:2525/imposters
+Content-Type: application/json
+
+{
+  "port": 4545,
+  "protocol": "http",
+  "stubs": [
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "GET",
+            "path": "/api/produtos"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": [
+              { "id": 1, "nome": "Teclado", "preco": 25, "quantidade": 10 },
+              { "id": 2, "nome": "Rato", "preco": 15, "quantidade": 5 }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "GET",
+            "path": "/api/produtos/1"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": {
+              "id": 1,
+              "nome": "Teclado",
+              "preco": 25,
+              "quantidade": 10
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "POST",
+            "path": "/api/produtos"
+          }
+        },
+        {
+          "contains": {
+            "body": "nome"
+          }
+        },
+        {
+          "contains": {
+            "body": "preco"
+          }
+        },
+        {
+          "contains": {
+            "body": "quantidade"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 201,
+            "headers": {
+              "Content-Type": "application/json",
+              "Location": "/api/produtos/3"
+            },
+            "body": {
+              "id": 3,
+              "status": "created"
+            }
+          }
+        }
+      ]
+    },
+
+
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "PUT",
+            "path": "/api/produtos/1/stock"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": {
+              "status": "stock atualizado"
+            }
+          }
+        }
+      ]
+    },
+
+
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "DELETE",
+            "path": "/api/produtos/1"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": {
+              "error": "Produto eliminado com sucesso"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

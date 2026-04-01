@@ -1,0 +1,1 @@
+PUT http://localhost:4545/api/produtos/1/stock
